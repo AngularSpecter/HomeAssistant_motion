@@ -10,11 +10,11 @@ The script HA_motion_trigger.py needs to be saved in the `scripts` dir (/data/sc
 
 To set up the script to be called on motion start and motion end, find the 'motion notifications' section in the motionEye gui and set the following:
 
-Run a command: on
-command: /data/scripts/HA_motion_trigger.py --status=MOTION --cam_id=%t --width=%i --height=%J --x=%K --y=%L --event_id=%v --pixels=%D --noise=%N
+    Run a command: on
+    command: /data/scripts/HA_motion_trigger.py --status=MOTION --cam_id=%t --width=%i --height=%J --x=%K --y=%L --event_id=%v --pixels=%D --noise=%N
 
-Run and end command: on
-command: /data/scripts/HA_motion_trigger.py --status='NO MOTION' --cam_id=%t --width=%i --height=%J --x=%K --y=%L --event_id=%v --pixels=%D --noise=%N
+    Run and end command: on
+    command: /data/scripts/HA_motion_trigger.py --status='NO MOTION' --cam_id=%t --width=%i --height=%J --x=%K --y=%L --event_id=%v --pixels=%D --noise=%N
 
 At this point you should be able to watch your MQTT traffic and see the messages passing.
 
