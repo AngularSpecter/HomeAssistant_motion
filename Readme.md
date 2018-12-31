@@ -18,7 +18,7 @@ command: /data/scripts/HA_motion_trigger.py --status='NO MOTION' --cam_id=%t --w
 
 At this point you should be able to watch your MQTT traffic and see the messages passing.
 
-**Set 3: Disabling auto recording**
+**Step 2: Disabling auto recording**
 
 One thing about this method is that we are disabling motion's default behavior.  By default, motion expects an "Event" to be somewhat short lived...A car pulling up your driveway, an animal walking past your house.  Presence detection is really watching for a ton of events and waiting for them to stop.  If we make motion sensitive enough to work well for presence detection, it's going to record a lot of stuff you probably don't care about.  Instead of a hundred, randomly spaced photos, I decided I'd rather have a timelapse at even intervals that I can control.  So, we have to disable the automated recording.  To do this, I use the following settings:
 
