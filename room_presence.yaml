@@ -1,0 +1,38 @@
+binary_sensor:
+  - platform: mqtt
+    name: room motion
+    state_topic: 'home/downstairs/room/sensor/motion'
+    value_template: '{{ value_json.status }}'
+    payload_on: "MOTION"
+    payload_off: "NO MOTION"
+    device_class: motion
+
+  - platform: template
+    sensors:
+     room_occupied:
+      friendly_name: "Room Occupied"
+      device_class: occupancy
+      delay_off: 350
+      entity_id:
+        - binary_sensor.room_motion
+      value_template: >-
+       {{ is_state( 'binary_sensor.room_motion', 'on' ) }}
+               
+rest_command:
+  trigger_snapshot_room:
+    url: 'http://<motionEyeOS_IP>:7999/1/action/snapshot'
+
+automation:
+  - alias : Room Auto Record
+    trigger:
+      platform: time
+      minutes: '/10'
+      seconds: 0
+    
+    condition:
+      - condition: state
+        entity_id: 'binary_sensor.room_occupied'
+        state: 'on'
+    
+    action:
+      - service: rest_command.trigger_snapshot_room               
